@@ -38,14 +38,14 @@ public class PlayerInteraction : MonoBehaviour
             {
                 if (interactableObject != objectHit && interactableObject != null)
                 {
-                    interactableObject.Highlight(false);
+                    interactableObject.SetHighlight(false);
                     interactableObject = null;
                 }
 
                 if (interactableObject == null)
                 {
                     interactableObject = objectHit.GetComponent<Interactable>();
-                    interactableObject.Highlight(true);
+                    interactableObject.SetHighlight(true);
 
                     HandleInteraction(interactableObject);
 
@@ -61,7 +61,7 @@ public class PlayerInteraction : MonoBehaviour
         }
         else if (interactableObject != null)
         {
-            interactableObject.Highlight(false);
+            interactableObject.SetHighlight(false);
             interactableObject = null;
             Debug.Log("No interactable in range");
         }
