@@ -4,18 +4,13 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public abstract class Interactable : MonoBehaviour
+public class Interactable : MonoBehaviour
 {
+    [TextArea(3, 10)][SerializeField] private string interactableDescription;
+
+    public Item item;
     
-    public enum InteractionType
-    {
-        Click,
-        Puzzle
-    }
-
-    public InteractionType interactionType;
-
-    protected void Awake()
+    private void Awake()
     {
         var outline = gameObject.AddComponent<Outline>();
         outline.OutlineMode = Outline.Mode.OutlineVisible;
@@ -24,9 +19,23 @@ public abstract class Interactable : MonoBehaviour
         outline.enabled = false;
     }
 
-    public abstract string GetName();
-    public abstract string GetInteraction();
-    public abstract void Interact();
+
+
+    public string GetName()
+    {
+        return this.name;
+    }
+    public string GetInteractionDescription()
+    {
+        return interactableDescription;
+    }
     
+    public void Interact(GameObject itemObject)
+    {
+        InventoryManager.Instance.AddItem(item);
+        Destroy(itemObject);
+        Debug.Log("Interacting with " + this.name);
+    }
+
 }
     
