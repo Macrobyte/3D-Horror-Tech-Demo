@@ -10,7 +10,8 @@ public class PlayerInteraction : MonoBehaviour
 
     [SerializeField][Range(1,5)]public float interactionDistance;
 
-    public TMPro.TextMeshProUGUI interactionText;
+    private TMPro.TextMeshProUGUI interactionText;
+    private TMPro.TextMeshProUGUI NameText;
 
     KeyCode interactKey = KeyCode.E;
 
@@ -18,7 +19,8 @@ public class PlayerInteraction : MonoBehaviour
 
     void Start()
     {
-       
+        interactionText = GameObject.FindGameObjectWithTag("InteractionText").GetComponent<TMPro.TextMeshProUGUI>();
+        NameText = GameObject.FindGameObjectWithTag("NameText").GetComponent<TMPro.TextMeshProUGUI>();
     }
 
 
@@ -32,41 +34,51 @@ public class PlayerInteraction : MonoBehaviour
         
         if (Physics.Raycast(ray, out hit, interactionDistance))
         {
-            Transform objectHit = hit.transform;
-
-            if (objectHit.GetComponent<Interactable>() != null)
+            if (hit.transform.GetComponent<Interactable>() != null)
             {
-                if (interactableObject != objectHit && interactableObject != null)
-                {
-                    interactableObject.SetHighlight(false);
-                    interactableObject = null;
-                }
+                interactableObject = hit.transform.GetComponent<Interactable>();
 
-                if (interactableObject == null)
+                if (interactableObject != null)
                 {
-                    interactableObject = objectHit.GetComponent<Interactable>();
-                    interactableObject.SetHighlight(true);
+                    interactableObject.GetComponent<Outline>().enabled = true;
+                    
+                    interactionText.text = interactableObject.GetInteraction();
+                    
+                    NameText.text = interactableObject.GetName();
 
                     HandleInteraction(interactableObject);
 
-                    interactionText.text = interactableObject.GetDescription();
-
                     successfulHit = true;
+                    
+                    Debug.Log("Looking at " + interactableObject.name);
                 }
-
-                
-
-                Debug.Log("Looking at " + interactableObject.name);
             }
+            else
+            {
+                if (interactableObject != null)
+                {
+                    interactableObject.GetComponent<Outline>().enabled = false;
+                    interactableObject = null;
+                }
+                    
+            }  
         }
-        else if (interactableObject != null)
+        else
         {
-            interactableObject.SetHighlight(false);
-            interactableObject = null;
-            Debug.Log("No interactable in range");
+            if (interactableObject != null)
+            {
+                interactableObject.GetComponent<Outline>().enabled = false;
+                interactableObject = null;
+            }
+
+            Debug.Log("Looking at nothing");
         }
 
-        if (!successfulHit) interactionText.text = "";
+        if (!successfulHit)
+        {
+            interactionText.text = "";
+            NameText.text = "";
+        }
         
 
         Debug.DrawRay(ray.origin, ray.direction * interactionDistance, Color.yellow);

@@ -9,19 +9,23 @@ public class Ball : Interactable
 
     Transform lookingDiraction;
 
-    private void Awake()
+    private new void Awake()
     {
+        base.Awake();
         rigidbody = GetComponent<Rigidbody>();
         lookingDiraction = GameObject.FindGameObjectWithTag("MainCamera").transform;
     }
-    public override string GetDescription()
+    public override string GetName()
     {
-        return "Press <color=yellow>[E]</color> to kick the ball";
+        return "<color=yellow>Ball</color>";
+    }
+    public override string GetInteraction()
+    {
+        return "Press <color=yellow>[E]</color> to kick the ball!";
     }
 
     public override void Interact()
     {
-        Debug.Log("Picked up the ball");
         rigidbody.AddForce(lookingDiraction.forward * force, ForceMode.Impulse);
     }
 
