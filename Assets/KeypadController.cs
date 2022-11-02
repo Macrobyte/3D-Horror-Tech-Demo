@@ -25,22 +25,9 @@ public class KeypadController : MonoBehaviour
         Instance = this;
         displayText.text = "";
 
-        correctCodeEvent.AddListener(Event);
+        
 
     }
-
-    void Event()
-    {
-        Debug.Log("EVENT");
-    }
-
-    private void OnDisable()
-    {
-        correctCodeEvent.RemoveListener(Event);
-    }
-
-
-
 
     public void NumberClicked(int number)
     {

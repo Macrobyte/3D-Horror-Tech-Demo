@@ -4,7 +4,7 @@ using UnityEngine;
 public class InteractableKeypad : Interactable
 {
     public CinemachineVirtualCamera keypadCamera;
-    public GameObject player;
+    
 
     private new void Awake()
     {
@@ -13,23 +13,17 @@ public class InteractableKeypad : Interactable
     }
     public override void EnterInteraction()
     {
-
-        player.GetComponent<PlayerInteraction>().enabled = false;
-        player.SetActive(false);
+        base.EnterInteraction();
         keypadCamera.enabled = true;
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
     }
 
-    public void ExitInteraction()
+    public override void ExitInteraction()
     {
-        player.GetComponent<PlayerInteraction>().enabled = true;
-        player.SetActive(true);
+        base.ExitInteraction();
         keypadCamera.enabled = false;
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
     }
 
+ 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))

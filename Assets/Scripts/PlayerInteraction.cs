@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerInteraction : MonoBehaviour
 {
 
-    public Camera camera;
+    public new Camera camera;
 
     [SerializeField][Range(1,5)]public float interactionDistance;
 
