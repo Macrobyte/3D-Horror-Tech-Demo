@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2961275102510415302}
   - component: {fileID: 918019536562097779}
   - component: {fileID: 7273148343273383840}
-  - component: {fileID: -8876769904393227267}
+  - component: {fileID: 9066254398019502888}
   m_Layer: 0
   m_Name: Knife
   m_TagString: Untagged
@@ -65,7 +65,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &-8876769904393227267
+--- !u!114 &9066254398019502888
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -74,9 +74,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2473391713841260412}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3c678f25ed40ac418fbc765fb094209, type: 3}
+  m_Script: {fileID: 11500000, guid: d501cf4070905194897a61f71ee6a0d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactableDescription: Press <color=yellow>[E]</color> to put in inventory!
+  interactableType: 0
   item: {fileID: 11400000, guid: bfb10b9c68c77a541a6e4ec3a11b2f0e, type: 2}
 --- !u!1 &7640035112976147921
 GameObject:

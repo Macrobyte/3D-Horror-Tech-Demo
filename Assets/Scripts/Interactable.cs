@@ -4,38 +4,39 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class Interactable : MonoBehaviour
+public abstract class Interactable : MonoBehaviour
 {
     [TextArea(3, 10)][SerializeField] private string interactableDescription;
 
-    public Item item;
+    public enum InteractableType
+    {
+        Item,
+        Keypad
+    }
+
+    public InteractableType interactableType;
     
-    private void Awake()
+    public void Awake()
     {
         var outline = gameObject.AddComponent<Outline>();
         outline.OutlineMode = Outline.Mode.OutlineVisible;
         outline.OutlineColor = Color.yellow;
-        outline.OutlineWidth = 2f;
+        outline.OutlineWidth = 3f;
         outline.enabled = false;
     }
-
-
-
-    public string GetName()
-    {
-        return this.name;
-    }
+    
     public string GetInteractionDescription()
     {
         return interactableDescription;
     }
-    
-    public void Interact(GameObject itemObject)
+
+    public string GetName()
     {
-        InventoryManager.Instance.AddItem(item);
-        Destroy(itemObject);
-        Debug.Log("Interacting with " + this.name);
+        return this.gameObject.name;
     }
 
+    public abstract void Interact();
+    
 }
+
     

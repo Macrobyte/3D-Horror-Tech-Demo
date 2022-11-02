@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerInteraction : MonoBehaviour
 {
 
-    public new Camera camera;
+    public Camera camera;
 
     [SerializeField][Range(1,5)]public float interactionDistance;
 
@@ -17,6 +17,8 @@ public class PlayerInteraction : MonoBehaviour
 
     public Interactable interactableObject;
 
+    
+    
     void Start()
     {
         interactionText = GameObject.FindGameObjectWithTag("InteractionText").GetComponent<TMPro.TextMeshProUGUI>();
@@ -26,10 +28,10 @@ public class PlayerInteraction : MonoBehaviour
 
     void Update()
     {
-        HandleInteractabkeDetection();
+        HandleInteractableDetection();
     }
 
-    private void HandleInteractabkeDetection()
+    private void HandleInteractableDetection()
     {
         RaycastHit hit;
 
@@ -84,12 +86,36 @@ public class PlayerInteraction : MonoBehaviour
     
     private void HandleInteraction(Interactable interactable)
     {
-        if (Input.GetKeyDown(interactKey))
+        switch (interactable.interactableType)
         {
-            interactable.Interact(interactableObject.gameObject);
-
-            InventoryManager.Instance.UpdateInventory();
+            case Interactable.InteractableType.Item:
+                if (Input.GetKeyDown(interactKey))
+                {
+                    interactable.Interact();
+                }
+                break;
+            case Interactable.InteractableType.Keypad:
+                if (Input.GetKeyDown(interactKey))
+                {
+                    interactable.Interact();
+                }
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
         }
+
+
+
+        //if (Input.GetKeyDown(interactKey))
+        //{
+        //    interactable.Interact(interactableObject.gameObject);   
+        //}
+    }
+
+    private void OnDisable()
+    {
+        interactionText.text = "";
+        NameText.text = "";
     }
 }
 
