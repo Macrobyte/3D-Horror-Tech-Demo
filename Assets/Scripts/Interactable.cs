@@ -35,7 +35,7 @@ public abstract class Interactable : MonoBehaviour
         return this.gameObject.name;
     }
 
-    public abstract void Interact();
+    public abstract void EnterInteraction();
     
 }
 

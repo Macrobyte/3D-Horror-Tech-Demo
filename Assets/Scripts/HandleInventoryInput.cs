@@ -1,3 +1,4 @@
+using StarterAssets;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,10 +9,12 @@ using UnityEngine.UIElements;
 public class HandleInventoryInput : MonoBehaviour
 {
     private GameObject inventory;
+    private FirstPersonController playerController;
     
     public void Awake()
     {
         inventory = GameObject.Find("Inventory");
+        playerController = GetComponent<FirstPersonController>();
         inventory.SetActive(false);
 
     }
@@ -21,6 +24,7 @@ public class HandleInventoryInput : MonoBehaviour
         {
             if (inventory.activeSelf)
             {
+                playerController.enabled = true;
                 SetCursorState(true);
                 inventory.SetActive(false);
                 Time.timeScale = 1;
@@ -28,6 +32,7 @@ public class HandleInventoryInput : MonoBehaviour
                 
             else
             {
+                playerController.enabled = false;
                 SetCursorState(false);
                 inventory.SetActive(true);
                 Time.timeScale = 0;
@@ -39,5 +44,6 @@ public class HandleInventoryInput : MonoBehaviour
     private void SetCursorState(bool newState)
     {
         UnityEngine.Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
+        UnityEngine.Cursor.visible = !newState;
     }
 }

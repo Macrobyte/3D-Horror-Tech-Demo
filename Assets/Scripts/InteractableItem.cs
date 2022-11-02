@@ -7,7 +7,7 @@ public class InteractableItem : Interactable
 
     public Item item;
 
-    public override void Interact()
+    public override void EnterInteraction()
     {
         PickUpItem();
     }

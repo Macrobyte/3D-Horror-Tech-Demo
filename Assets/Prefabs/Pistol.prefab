@@ -175,9 +175,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4555869222904458423}
-  - component: {fileID: 6965154115702986612}
   - component: {fileID: 7271904506267337522}
   - component: {fileID: 4596151941744595089}
+  - component: {fileID: 4915391590147204243}
+  - component: {fileID: 7236956507100797182}
   m_Layer: 0
   m_Name: Pistol
   m_TagString: Untagged
@@ -205,19 +206,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
---- !u!65 &6965154115702986612
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3779191094549067277}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.033489823, y: 0.16, z: 0.26995677}
-  m_Center: {x: 0.0004731262, y: -0.000003138921, z: 0.08853297}
 --- !u!54 &7271904506267337522
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -249,6 +237,32 @@ MonoBehaviour:
   interactableDescription: Press <color=yellow>[E]</color> to put in inventory!
   interactableType: 0
   item: {fileID: 11400000, guid: c34f0c46afa4e4d4e954b84aa1c97f6a, type: 2}
+--- !u!65 &4915391590147204243
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3779191094549067277}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.03585299, y: 0.13472961, z: 0.06626867}
+  m_Center: {x: -0.0011467366, y: -0.00009643139, z: -0.008054773}
+--- !u!65 &7236956507100797182
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3779191094549067277}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.03585299, y: 0.068244904, z: 0.2818527}
+  m_Center: {x: -0.0011467366, y: 0.052416906, z: 0.09973661}
 --- !u!1 &4355683528589382001
 GameObject:
   m_ObjectHideFlags: 0

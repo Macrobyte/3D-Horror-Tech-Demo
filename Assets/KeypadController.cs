@@ -2,10 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class KeypadController : MonoBehaviour
 {
+    public UnityEvent correctCodeEvent;
+
+
+
+    public static KeypadController Instance;
+    
     public Color defaultDisplayColor;
     public Image display;
     public TMPro.TextMeshProUGUI displayText;
@@ -15,8 +22,25 @@ public class KeypadController : MonoBehaviour
 
     private void Start()
     {
+        Instance = this;
         displayText.text = "";
+
+        correctCodeEvent.AddListener(Event);
+
     }
+
+    void Event()
+    {
+        Debug.Log("EVENT");
+    }
+
+    private void OnDisable()
+    {
+        correctCodeEvent.RemoveListener(Event);
+    }
+
+
+
 
     public void NumberClicked(int number)
     {
@@ -53,7 +77,6 @@ public class KeypadController : MonoBehaviour
                 {
                     Debug.Log("Password Incorrect");
                     StartCoroutine(IncorrectPassword());
-                    displayText.text = "Incorrect";
                 }
                 break;
         }
@@ -63,9 +86,10 @@ public class KeypadController : MonoBehaviour
     public bool CorrectPassword()
     {
         displayText.text = "";
+        correctCodeEvent.Invoke();
         return true;
     }
-    
+
 
     IEnumerator IncorrectPassword()
     {
@@ -77,6 +101,8 @@ public class KeypadController : MonoBehaviour
         display.color = Color.red;
         yield return new WaitForSeconds(0.5f);
         display.color = defaultDisplayColor;
+        displayText.text = "Incorrect";
+        yield return new WaitForSeconds(0.5f);
         displayText.text = "";
         incorrectPassword = false;
     }

@@ -91,13 +91,13 @@ public class PlayerInteraction : MonoBehaviour
             case Interactable.InteractableType.Item:
                 if (Input.GetKeyDown(interactKey))
                 {
-                    interactable.Interact();
+                    interactable.EnterInteraction();
                 }
                 break;
             case Interactable.InteractableType.Keypad:
                 if (Input.GetKeyDown(interactKey))
                 {
-                    interactable.Interact();
+                    interactable.EnterInteraction();
                 }
                 break;
             default:

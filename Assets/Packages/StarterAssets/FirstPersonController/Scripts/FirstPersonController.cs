@@ -134,8 +134,9 @@ namespace StarterAssets
 			// if there is an input
 			if (_input.look.sqrMagnitude >= _threshold)
 			{
-				//Don't multiply mouse input by Time.deltaTime
-				float deltaTimeMultiplier = Time.deltaTime;
+                //Don't multiply mouse input by Time.deltaTime
+                float deltaTimeMultiplier = IsCurrentDeviceMouse ? 1.0f : Time.deltaTime;
+                
 				
 				_cinemachineTargetPitch += _input.look.y * RotationSpeed * deltaTimeMultiplier;
 				_rotationVelocity = _input.look.x * RotationSpeed * deltaTimeMultiplier;

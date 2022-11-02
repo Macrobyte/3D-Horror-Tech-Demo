@@ -11,7 +11,7 @@ public class InteractableKeypad : Interactable
         base.Awake();
         keypadCamera = GetComponentInChildren<CinemachineVirtualCamera>();
     }
-    public override void Interact()
+    public override void EnterInteraction()
     {
 
         player.GetComponent<PlayerInteraction>().enabled = false;
@@ -21,15 +21,20 @@ public class InteractableKeypad : Interactable
         Cursor.lockState = CursorLockMode.None;
     }
 
+    public void ExitInteraction()
+    {
+        player.GetComponent<PlayerInteraction>().enabled = true;
+        player.SetActive(true);
+        keypadCamera.enabled = false;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            keypadCamera.enabled = false;
-            player.SetActive(true);
-            player.GetComponent<PlayerInteraction>().enabled = true;
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
+            ExitInteraction();
         }
     }
 }
