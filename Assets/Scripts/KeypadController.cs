@@ -58,7 +58,7 @@ public class KeypadController : MonoBehaviour
                 {
                     Debug.Log("Password Correct");
                     displayText.text = "Correct";
-                    CorrectPassword();
+                    StartCoroutine(CorrectPassword());
                 }
                 else
                 {
@@ -70,11 +70,14 @@ public class KeypadController : MonoBehaviour
     }
 
 
-    public bool CorrectPassword()
+
+    IEnumerator CorrectPassword()
     {
+        display.color = Color.green;
+        yield return new WaitForSeconds(0.5f);
+        display.color = defaultDisplayColor;
         displayText.text = "";
         correctCodeEvent.Invoke();
-        return true;
     }
 
 

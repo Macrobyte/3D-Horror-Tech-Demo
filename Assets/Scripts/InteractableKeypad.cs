@@ -26,7 +26,7 @@ public class InteractableKeypad : Interactable
  
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             ExitInteraction();
         }
