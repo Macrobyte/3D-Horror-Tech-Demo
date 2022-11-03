@@ -100,16 +100,16 @@ public class PlayerInteraction : MonoBehaviour
                     interactable.EnterInteraction();
                 }
                 break;
+            case Interactable.InteractableType.Document:
+                if (Input.GetKeyDown(interactKey))
+                {
+                    interactable.EnterInteraction();
+                }
+                break;
             default:
                 throw new ArgumentOutOfRangeException();
         }
-
-
-
-        //if (Input.GetKeyDown(interactKey))
-        //{
-        //    interactable.Interact(interactableObject.gameObject);   
-        //}
+      
     }
 
     private void OnDisable()

@@ -14,7 +14,7 @@ public class HandleInventoryInput : MonoBehaviour
     public void Awake()
     {
         inventory = GameObject.Find("Inventory");
-        playerController = GetComponent<FirstPersonController>();
+        playerController = FindObjectOfType<FirstPersonController>();
         inventory.SetActive(false);
 
     }

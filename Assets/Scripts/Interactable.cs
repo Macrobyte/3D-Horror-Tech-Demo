@@ -8,18 +8,20 @@ using UnityEngine;
 public abstract class Interactable : MonoBehaviour
 {
     [TextArea(3, 10)][SerializeField] private string interactableDescription;
-    public GameObject player;
+    private GameObject player;
 
     public enum InteractableType
     {
         Item,
-        Keypad
+        Keypad,
+        Document
     }
 
     public InteractableType interactableType;
     
     public void Awake()
     {
+        player = FindObjectOfType<FirstPersonController>().gameObject;
         AddOutline();
     }
     
